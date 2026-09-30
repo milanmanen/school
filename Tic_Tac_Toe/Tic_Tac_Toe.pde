@@ -1,19 +1,70 @@
+char[][] bord = {
+  {' ',' ',' ',},
+  {' ',' ',' ',},
+  {' ',' ',' ',}
+};
 
+char speler = 'X';
 
 void setup(){
-  size(800,600);
+  size(600,600);
   background(255,255,255);
   
 }
 
 void draw(){
   ttt();
+  tekenSpelers();
 }
 
  void ttt(){
    strokeWeight(5);
-line(250,0,250,600);
-line(550,0,550,600);
-line(0,200,800,200);
-line(0,400,800,400);
+line(200,0,200,600);
+line(400,0,400,600);
+line(0,200,600,200);
+line(0,400,600,400);
+ }
+ 
+ void mousePressed(){
+   int kolom = mouseX/200;
+   int rij = mouseY/200;
+   
+   if (bord[rij][kolom] == ' ') {
+     bord[rij][kolom] = speler;
+     
+     if (speler == 'X') {
+       speler = 'O';
+     } else {
+       speler = 'X';
+     }
+   }
+ }
+ 
+ void tekenSpelers() {
+
+  for (int rij = 0; rij < 3; rij++) {
+    for (int kolom = 0; kolom < 3; kolom++) {
+
+      if (bord[rij][kolom] == 'X') {
+
+        strokeWeight(8);
+
+        line(kolom * 150 + 50, rij * 200 + 50,
+             kolom * 200 + 200, rij * 200 + 150);
+
+        line(kolom * 200 + 200, rij * 200 + 50,
+             kolom * 200 + 50, rij * 200 + 150);
+      }
+
+      if (bord[rij][kolom] == 'O') {
+
+        strokeWeight(8);
+        noFill();
+
+        ellipse(kolom * 200 + 125,
+                rij * 200 + 100,
+                140, 140);
+      }
+    }
+  }
  }
