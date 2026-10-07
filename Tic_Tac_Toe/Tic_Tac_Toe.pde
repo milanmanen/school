@@ -7,6 +7,7 @@ char[][] bord = {
 char speler = 'X';
 boolean gewonnen = false;
 char winnaar = ' ';
+boolean gelijkspel = false;
 
 void setup(){
   size(600,600);
@@ -26,6 +27,14 @@ void draw(){
     textAlign(CENTER,CENTER);
     textSize(40);
     text("speler " + winnaar + " wint!",300,270);
+  } if(gelijkspel) {
+    fill(255);
+    rect(100,220,400,100);
+    
+    fill(0,255,0);
+    textAlign(CENTER,CENTER);
+    textSize(40);
+    text("Gelijkspel!",300,270);
   }
 }
 // het bord
@@ -48,6 +57,8 @@ line(0,400,600,400);
      bord[rij][kolom] = speler;
      
      Gewonnen();
+     Gelijkspel();
+     
      if(!gewonnen) {
      if (speler == 'X') {
        speler = 'O';

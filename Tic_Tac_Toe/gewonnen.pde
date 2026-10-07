@@ -38,3 +38,19 @@ void Gewonnen(){
     winnaar = bord[0][2];
   }
 }
+  //gelijkspel
+  void Gelijkspel(){
+    boolean vol = true;
+    
+    for (int rij = 0; rij < 3; rij++) {
+      for (int  kolom = 0; kolom < 3; kolom++) {
+        
+        if (bord[rij][kolom] == ' ') {
+          vol = false;
+        }
+      }
+    }
+    if (vol && !gewonnen) {
+      gelijkspel = true;
+    }
+  }
