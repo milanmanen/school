@@ -11,16 +11,18 @@ boolean gelijkspel = false;
 
 void setup(){
   size(600,600);
-  background(255,255,255);
   
 }
 
 void draw(){
+  background(255,255,255);
   ttt();
   tekenSpelers();
   
-  if(gewonnen) {
-    fill(255);
+  // tekent een vierkant die zegt wie heeft gewonnen of dat het gelijkspel is
+  if(gewonnen || gelijkspel) {
+    if(gewonnen) {
+      fill(255);
     rect(100,220,400,100);
     
     fill(0,255,0);
@@ -31,10 +33,18 @@ void draw(){
     fill(255);
     rect(100,220,400,100);
     
-    fill(0,255,0);
+    fill(255,165,0);
     textAlign(CENTER,CENTER);
     textSize(40);
     text("Gelijkspel!",300,270);
+  }
+  // opnieuw spelen knop
+  fill(200);
+  rect(175, 350, 250, 60);
+
+  fill(0);
+  textSize(25);
+  text("Opnieuw spelen", 300, 380);
   }
 }
 // het bord
@@ -47,8 +57,14 @@ line(0,400,600,400);
  }
  // maakt het zodat er een x of o komt waar je clickt
  void mousePressed(){
-   if (gewonnen) {
-     return;
+   if (gewonnen || gelijkspel) {
+     // zorgt ervoor dat de knop werkt en de functie wordt uitgevoerd
+      if (mouseX > 175 && mouseX < 425 &&
+        mouseY > 350 && mouseY < 410) {
+      opnieuwSpelen();
+        }
+        return;
+        
    }
    int kolom = mouseX/200;
    int rij = mouseY/200;
@@ -59,7 +75,7 @@ line(0,400,600,400);
      Gewonnen();
      Gelijkspel();
      
-     if(!gewonnen) {
+     if(!gewonnen && !gelijkspel) {
      if (speler == 'X') {
        speler = 'O';
      } else {
