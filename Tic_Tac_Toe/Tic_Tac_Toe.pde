@@ -8,9 +8,11 @@ char speler = 'X';
 boolean gewonnen = false;
 char winnaar = ' ';
 boolean gelijkspel = false;
+Knop opnieuwKnop;
 
 void setup(){
   size(600,600);
+  opnieuwKnop = new Knop(175, 350, 250, 60);
   
 }
 
@@ -39,12 +41,9 @@ void draw(){
     text("Gelijkspel!",300,270);
   }
   // opnieuw spelen knop
-  fill(200);
-  rect(175, 350, 250, 60);
-
-  fill(0);
-  textSize(25);
-  text("Opnieuw spelen", 300, 380);
+  if (gewonnen || gelijkspel) {
+  opnieuwKnop.teken();
+}
   }
 }
 // het bord
@@ -57,15 +56,13 @@ line(0,400,600,400);
  }
  // maakt het zodat er een x of o komt waar je clickt
  void mousePressed(){
-   if (gewonnen || gelijkspel) {
      // zorgt ervoor dat de knop werkt en de functie wordt uitgevoerd
-      if (mouseX > 175 && mouseX < 425 &&
-        mouseY > 350 && mouseY < 410) {
+  if (gewonnen || gelijkspel) {
+    if (opnieuwKnop.isAangeklikt()) {
       opnieuwSpelen();
-        }
-        return;
-        
-   }
+    }
+    return;
+  }
    int kolom = mouseX/200;
    int rij = mouseY/200;
    
