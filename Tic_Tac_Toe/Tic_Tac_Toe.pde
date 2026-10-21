@@ -54,7 +54,6 @@ line(400,0,400,600);
 line(0,200,600,200);
 line(0,400,600,400);
  }
- // maakt het zodat er een x of o komt waar je clickt
  void mousePressed(){
      // zorgt ervoor dat de knop werkt en de functie wordt uitgevoerd
   if (gewonnen || gelijkspel) {
@@ -63,6 +62,7 @@ line(0,400,600,400);
     }
     return;
   }
+  // maakt het zodat er een x of o komt waar je clickt
    int kolom = mouseX/200;
    int rij = mouseY/200;
    
